@@ -12,8 +12,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>إدارة المؤسسة</title>
 <link rel="manifest" href="admin.webmanifest">
-<link rel="icon" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" href="Icons/icon-192.png">
+<link rel="apple-touch-icon" href="Icons/icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f6f1e7;--card:#fffdf8;--ink:#14213d;--mute:#6b6a64;--gold:#a8832f;--line:#e3d9c3;--navy:#14213d;--onnavy:#f6f1e7;--red:#b3392f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -124,8 +124,10 @@ async function api(a,o){try{const d=await post(Object.assign({action:a,token:tk}
 /* install as an app */
 let ipEv=null;
 const isStandalone=()=>(window.matchMedia&&matchMedia("(display-mode: standalone)").matches)||navigator.standalone===true;
+const inApp=/FBAN|FBAV|Instagram|Line\/|; wv\)|Telegram|MicroMessenger/i.test(navigator.userAgent);
 const showInstall=()=>{const h=$("#inst");if(!h||isStandalone())return;
  if(ipEv){h.innerHTML=`<button class="instb" id="ib">ثبّت لوحة الإدارة كتطبيق على هاتفك</button>`;$("#ib").onclick=async()=>{ipEv.prompt();try{await ipEv.userChoice}catch(e){}ipEv=null;h.innerHTML=""}}
+ else if(/Android/i.test(navigator.userAgent)){h.innerHTML=`<div class="insth">${inApp?"افتح الرابط من متصفح Chrome (وليس من داخل واتساب أو فيسبوك) ثم اختر ⋮ ثم «تثبيت التطبيق».":"للتثبيت كتطبيق: من قائمة Chrome ⋮ اختر «تثبيت التطبيق» (Install app)."}</div>`}
  else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){h.innerHTML=`<div class="insth">للتثبيت: اضغط زر المشاركة ثم «إضافة إلى الشاشة الرئيسية».</div>`}};
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();ipEv=e;showInstall()});
 addEventListener("appinstalled",()=>{ipEv=null;const h=$("#inst");if(h)h.innerHTML=""});

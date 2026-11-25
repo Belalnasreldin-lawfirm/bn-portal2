@@ -1,8 +1,8 @@
 // Service worker: makes the portal installable and faster. It never stores client data
 // (requests to the gatekeeper are cross-origin POSTs and are not touched here).
 // When you change index.html / admin.html, change the version below so phones refresh the saved copy.
-const V = 'bn-portal-v1';
-const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
+const V = 'bn-portal-v2';
+const SHELL = ['./', 'index.html', 'admin.html', 'manifest.webmanifest', 'admin.webmanifest', 'Icons/icon-192.png', 'Icons/icon-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(V).then(c => Promise.all(SHELL.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));

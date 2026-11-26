@@ -1,7 +1,7 @@
 {
-  "name": "مؤسسة بلال نصر الدين للمحاماة — بوابة العملاء",
-  "short_name": "بوابة BN",
-  "description": "متابعة القضايا والمستجدات والمراسلة مع المؤسسة.",
+  "name": "BN International",
+  "short_name": "BN International",
+  "description": "Client portal — Belal Nasr El-Din Law Firm",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
